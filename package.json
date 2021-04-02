@@ -1,0 +1,37 @@
+{
+  "name": "grpc-web-health-probe",
+  "dependencies": {
+    "commander": "^2.20.3",
+    "google-protobuf": "^3.6.1",
+    "grpc-web": "^1.2.1",
+    "xhr2": "^0.2.1"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.2",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  },
+  "bin": {
+    "grpc-web-health-probe": "grpc_web_health_probe.js"
+  },
+  "version": "1.0.0",
+  "description": "This is the grpc-web version of grpc-health-probe.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "grpc-web",
+    "cli"
+  ],
+  "author": "kamikaze.zirou",
+  "license": "MIT",
+  "main": "grpc_web_health_probe.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KamikazeZirou/grpc-web-health-probe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KamikazeZirou/grpc-web-health-probe/issues"
+  },
+  "homepage": "https://github.com/KamikazeZirou/grpc-web-health-probe#readme"
+}
