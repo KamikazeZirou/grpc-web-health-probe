@@ -5,12 +5,12 @@ This is the grpc-web version of grpc-health-probe.
 ## Install
 
 ```
-$ npm -g i grpc-health-probe-web
+$ npm -g i grpc-web-health-probe
 ```
 
 ## Usage
 
 ```
-$ grpc-health-probe-web --addr http://localhost:50051
+$ grpc-web-health-probe --addr http://localhost:50051
 status: SERVING
 ```
