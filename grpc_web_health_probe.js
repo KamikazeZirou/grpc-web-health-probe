@@ -10,6 +10,15 @@ opts
     .option('-d, --addr <address>', 'address of grpc web server(e.g. http://localhost:50051)', String)
     .parse(process.argv);
 
+// StatusInvalidArguments indicates specified invalid arguments.
+const StatusInvalidArguments = 1;
+// StatusConnectionFailure indicates connection failed.
+const StatusConnectionFailure = 2;
+// StatusRPCFailure indicates rpc failed.
+const StatusRPCFailure = 3;
+// StatusUnhealthy indicates rpc succeeded but indicates unhealthy service.
+const StatusUnhealthy = 4;
+
 // grpc-web uses XMLHttpRequest, but it does not exist in cli.
 global.XMLHttpRequest = require('xhr2');
 
@@ -28,9 +37,15 @@ function toString(status) {
 
     await healthClient.check(request, {})
         .then(response => {
-            console.log('status: ' + toString(response.getStatus()));
+            let status = toString(response.getStatus());
+            console.log('status: ' + status);
+
+            if (status !== "SERVING") {
+                process.exitCode = StatusUnhealthy;
+            }
         })
         .catch(err => {
             console.log(`Unexpected error for check: code = ${err.code}` + `, message = "${err.message}"`);
+            process.exitCode = StatusRPCFailure;
         });
 })();
