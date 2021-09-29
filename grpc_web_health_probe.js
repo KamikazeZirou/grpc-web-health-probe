@@ -8,6 +8,8 @@ const opts = require('commander')
 opts
     .usage('--addr address of grpc web servers')
     .option('-d, --addr <address>', 'address of grpc web server(e.g. http://localhost:50051)', String)
+    .usage('--timeout the time in seconds before the request is automatically terminated')
+    .option('-t, --timeout <timeout>', 'the time in seconds before the request is automatically terminated', Number, 1)
     .parse(process.argv);
 
 // StatusInvalidArguments indicates specified invalid arguments.
@@ -34,8 +36,10 @@ function toString(status) {
 (async() => {
     var healthClient = new HealthPromiseClient(opts.addr);
     let request = new HealthCheckRequest();
+    var timeout = new Date();
+    timeout.setSeconds(timeout.getSeconds() + opts.timeout);
 
-    await healthClient.check(request, {})
+    await healthClient.check(request, {deadline: timeout.getTime()})
         .then(response => {
             let status = toString(response.getStatus());
             console.log('status: ' + status);
