@@ -10,7 +10,7 @@
   "bin": {
     "grpc-web-health-probe": "grpc_web_health_probe.js"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This is the grpc-web version of grpc-health-probe.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
